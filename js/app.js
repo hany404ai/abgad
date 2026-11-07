@@ -1,4 +1,4 @@
-﻿/* ==========================================================
+/* ==========================================================
    مكتبة أبجد — منطق التطبيق
    - كل البيانات تأتي من: data/products.json و data/exercises.json
    - لا يوجد سيرفر: ما يختاره العميل يُحفظ في متصفحه (localStorage)
@@ -714,7 +714,7 @@
           <span class="best-chip" title="أفضل نتيجة سابقة">⭐ ${esc(best)}</span>
           <button type="button" class="share-btn" data-act="share-ex" data-id="${esc(x.id)}"
             aria-label="مشاركة رابط اختبار ${esc(x.title)}"
-            title="انشر رابط الاختبار في الجروبات كدعاية للمكتبة">
+            title="انشر الرابط لزملائك">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11M8 7l4-4 4 4M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span>مشاركة</span>
           </button>
