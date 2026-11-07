@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تدريب العمليات الحسابية</title>
+<style>
+  :root { --ink:#14284B; --paper:#F6F8FC; --rule:#DCE5F2; --marker:#FFD54A; --ok:#1E7A55; --bad:#B3342F; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif; background:var(--paper); color:var(--ink); line-height:1.8; }
+  main { max-width:560px; margin:0 auto; padding:20px 16px 40px; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  .sub { color:#3D4E6E; margin:0 0 20px; }
+  .q { background:#fff; border:1px solid var(--rule); border-radius:14px; padding:14px 16px; margin-bottom:14px; }
+  .q p { margin:0 0 10px; font-weight:600; }
+  .opts { display:grid; gap:8px; }
+  .opts button { font:inherit; text-align:right; min-height:48px; padding:8px 14px; border:1.5px solid #B9C8E0; border-radius:10px; background:#fff; color:var(--ink); cursor:pointer; }
+  .opts button:focus-visible { outline:3px solid var(--ink); outline-offset:2px; }
+  .opts button.right { background:#E4F4EC; border-color:var(--ok); }
+  .opts button.wrong { background:#FBE6E5; border-color:var(--bad); }
+  .opts button:disabled { cursor:default; }
+  .fb { min-height:1.6em; margin:8px 0 0; font-size:15px; }
+  .result { background:var(--ink); color:#fff; border-radius:14px; padding:18px; text-align:center; display:none; }
+  .result strong { background:linear-gradient(var(--marker),var(--marker)) no-repeat 100% 85% / 100% 50%; color:var(--ink); padding:0 6px; }
+  .result button { margin-top:12px; font:inherit; min-height:48px; padding:0 22px; border:0; border-radius:10px; background:var(--marker); color:var(--ink); font-weight:700; cursor:pointer; }
+  footer { text-align:center; color:#5A6A88; font-size:14px; margin-top:24px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>تدريب العمليات الحسابية</h1>
+  <p class="sub">اختر الإجابة الصحيحة لكل سؤال</p>
+  <div id="quiz"></div>
+  <div class="result" id="result" role="status" aria-live="polite">
+    <div>نتيجتك: <strong id="score"></strong></div>
+    <button id="again" type="button">حاول مرة أخرى</button>
+  </div>
+  <footer>مكتبة أبجد</footer>
+</main>
+<script>
+const QUESTIONS = [{"q": "ما ناتج 25 + 14؟", "o": ["37", "39", "41"], "a": 1}, {"q": "ما ناتج 48 + 30؟", "o": ["68", "78", "88"], "a": 1}, {"q": "ما ناتج 56 + 27؟", "o": ["73", "83", "93"], "a": 1}, {"q": "ما ناتج 100 − 40؟", "o": ["50", "60", "70"], "a": 1}, {"q": "ما ناتج 9 × 3؟", "o": ["24", "27", "36"], "a": 1}];
+const quiz = document.getElementById('quiz');
+const result = document.getElementById('result');
+let answered = 0, correct = 0;
+
+function build() {
+  quiz.innerHTML = ''; answered = 0; correct = 0; result.style.display = 'none';
+  QUESTIONS.forEach((q, qi) => {
+    const box = document.createElement('div'); box.className = 'q';
+    const p = document.createElement('p'); p.textContent = (qi + 1) + '. ' + q.q; box.appendChild(p);
+    const opts = document.createElement('div'); opts.className = 'opts';
+    const fb = document.createElement('p'); fb.className = 'fb'; fb.setAttribute('aria-live', 'polite');
+    q.o.forEach((text, oi) => {
+      const b = document.createElement('button'); b.type = 'button'; b.textContent = text;
+      b.addEventListener('click', () => {
+        opts.querySelectorAll('button').forEach(x => x.disabled = true);
+        if (oi === q.a) { b.classList.add('right'); fb.textContent = 'إجابة صحيحة'; correct++; }
+        else { b.classList.add('wrong'); opts.children[q.a].classList.add('right'); fb.textContent = 'الإجابة الصحيحة: ' + q.o[q.a]; }
+        answered++;
+        if (answered === QUESTIONS.length) {
+          document.getElementById('score').textContent = correct + ' من ' + QUESTIONS.length;
+          result.style.display = 'block';
+          result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+      opts.appendChild(b);
+    });
+    box.appendChild(opts); box.appendChild(fb); quiz.appendChild(box);
+  });
+}
+document.getElementById('again').addEventListener('click', () => { build(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+build();
+</script>
+</body>
+</html>

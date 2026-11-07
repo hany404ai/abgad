@@ -1,0 +1,574 @@
+{
+  "library": {
+    "name": "أبجد",
+    "tagline": "اختر ملازمك ونحن نطبعها لك",
+    "whatsapp": "201000000000",
+    "deliveryFee": 10,
+    "currency": "جنيه",
+    "instapay": {
+      "address": "abgad@instapay",
+      "accountName": "مكتبة أبجد"
+    }
+  },
+  "products": [
+    {
+      "id": "p1-arabic-t1",
+      "name": "ملزمة اللغة العربية - الترم الأول",
+      "grade": "p1",
+      "subject": "arabic",
+      "price": 20
+    },
+    {
+      "id": "p1-english-t1",
+      "name": "ملزمة اللغة الإنجليزية - الترم الأول",
+      "grade": "p1",
+      "subject": "english",
+      "price": 25
+    },
+    {
+      "id": "p1-math-t1",
+      "name": "ملزمة الرياضيات - الترم الأول",
+      "grade": "p1",
+      "subject": "math",
+      "price": 30
+    },
+    {
+      "id": "p2-arabic-t1",
+      "name": "ملزمة اللغة العربية - الترم الأول",
+      "grade": "p2",
+      "subject": "arabic",
+      "price": 35
+    },
+    {
+      "id": "p2-english-t1",
+      "name": "ملزمة اللغة الإنجليزية - الترم الأول",
+      "grade": "p2",
+      "subject": "english",
+      "price": 20
+    },
+    {
+      "id": "p2-math-t1",
+      "name": "ملزمة الرياضيات - الترم الأول",
+      "grade": "p2",
+      "subject": "math",
+      "price": 25
+    },
+    {
+      "id": "p3-arabic-t1",
+      "name": "ملزمة اللغة العربية - الترم الأول",
+      "grade": "p3",
+      "subject": "arabic",
+      "price": 30
+    },
+    {
+      "id": "p3-english-t1",
+      "name": "ملزمة اللغة الإنجليزية - الترم الأول",
+      "grade": "p3",
+      "subject": "english",
+      "price": 35
+    },
+    {
+      "id": "p3-math-t1",
+      "name": "ملزمة الرياضيات - الترم الأول",
+      "grade": "p3",
+      "subject": "math",
+      "price": 20
+    },
+    {
+      "id": "p4-arabic-t1",
+      "name": "ملزمة اللغة العربية - الترم الأول",
+      "grade": "p4",
+      "subject": "arabic",
+      "price": 25
+    },
+    {
+      "id": "p4-english-t1",
+      "name": "ملزمة اللغة الإنجليزية - الترم الأول",
+      "grade": "p4",
+      "subject": "english",
+      "price": 30
+    },
+    {
+      "id": "p4-math-t1",
+      "name": "ملزمة الرياضيات - الترم الأول",
+      "grade": "p4",
+      "subject": "math",
+      "price": 35
+    },
+    {
+      "id": "p4-science-t1",
+      "name": "ملزمة العلوم - الترم الأول",
+      "grade": "p4",
+      "subject": "science",
+      "price": 20
+    },
+    {
+      "id": "p4-social-t1",
+      "name": "ملزمة الدراسات الاجتماعية - الترم الأول",
+      "grade": "p4",
+      "subject": "social",
+      "price": 25
+    },
+    {
+      "id": "p5-arabic-t1",
+      "name": "ملزمة اللغة العربية - الترم الأول",
+      "grade": "p5",
+      "subject": "arabic",
+      "price": 30
+    },
+    {
+      "id": "p5-english-t1",
+      "name": "ملزمة اللغة الإنجليزية - الترم الأول",
+      "grade": "p5",
+      "subject": "english",
+      "price": 35
+    },
+    {
+      "id": "p5-math-t1",
+      "name": "ملزمة الرياضيات - الترم الأول",
+      "grade": "p5",
+      "subject": "math",
+      "price": 20
+    },
+    {
+      "id": "p5-science-t1",
+      "name": "ملزمة العلوم - الترم الأول",
+      "grade": "p5",
+      "subject": "science",
+      "price": 25
+    },
+    {
+      "id": "p5-social-t1",
+      "name": "ملزمة الدراسات الاجتماعية - الترم الأول",
+      "grade": "p5",
+      "subject": "social",
+      "price": 30
+    },
+    {
+      "id": "p6-arabic-t1",
+      "name": "ملزمة اللغة العربية - الترم الأول",
+      "grade": "p6",
+      "subject": "arabic",
+      "price": 35
+    },
+    {
+      "id": "p6-english-t1",
+      "name": "ملزمة اللغة الإنجليزية - الترم الأول",
+      "grade": "p6",
+      "subject": "english",
+      "price": 20
+    },
+    {
+      "id": "p6-math-t1",
+      "name": "ملزمة الرياضيات - الترم الأول",
+      "grade": "p6",
+      "subject": "math",
+      "price": 25
+    },
+    {
+      "id": "p6-science-t1",
+      "name": "ملزمة العلوم - الترم الأول",
+      "grade": "p6",
+      "subject": "science",
+      "price": 30
+    },
+    {
+      "id": "p6-social-t1",
+      "name": "ملزمة الدراسات الاجتماعية - الترم الأول",
+      "grade": "p6",
+      "subject": "social",
+      "price": 35
+    },
+    {
+      "id": "m1-arabic-t1",
+      "name": "ملزمة اللغة العربية - الترم الأول",
+      "grade": "m1",
+      "subject": "arabic",
+      "price": 28
+    },
+    {
+      "id": "m1-english-t1",
+      "name": "ملزمة اللغة الإنجليزية - الترم الأول",
+      "grade": "m1",
+      "subject": "english",
+      "price": 33
+    },
+    {
+      "id": "m1-math-t1",
+      "name": "ملزمة الرياضيات - الترم الأول",
+      "grade": "m1",
+      "subject": "math",
+      "price": 38
+    },
+    {
+      "id": "m1-science-t1",
+      "name": "ملزمة العلوم - الترم الأول",
+      "grade": "m1",
+      "subject": "science",
+      "price": 43
+    },
+    {
+      "id": "m1-social-t1",
+      "name": "ملزمة الدراسات الاجتماعية - الترم الأول",
+      "grade": "m1",
+      "subject": "social",
+      "price": 28
+    },
+    {
+      "id": "m2-arabic-t1",
+      "name": "ملزمة اللغة العربية - الترم الأول",
+      "grade": "m2",
+      "subject": "arabic",
+      "price": 33
+    },
+    {
+      "id": "m2-english-t1",
+      "name": "ملزمة اللغة الإنجليزية - الترم الأول",
+      "grade": "m2",
+      "subject": "english",
+      "price": 38
+    },
+    {
+      "id": "m2-math-t1",
+      "name": "ملزمة الرياضيات - الترم الأول",
+      "grade": "m2",
+      "subject": "math",
+      "price": 43
+    },
+    {
+      "id": "m2-science-t1",
+      "name": "ملزمة العلوم - الترم الأول",
+      "grade": "m2",
+      "subject": "science",
+      "price": 28
+    },
+    {
+      "id": "m2-social-t1",
+      "name": "ملزمة الدراسات الاجتماعية - الترم الأول",
+      "grade": "m2",
+      "subject": "social",
+      "price": 33
+    },
+    {
+      "id": "m3-arabic-t1",
+      "name": "ملزمة اللغة العربية - الترم الأول",
+      "grade": "m3",
+      "subject": "arabic",
+      "price": 38
+    },
+    {
+      "id": "m3-english-t1",
+      "name": "ملزمة اللغة الإنجليزية - الترم الأول",
+      "grade": "m3",
+      "subject": "english",
+      "price": 43
+    },
+    {
+      "id": "m3-math-t1",
+      "name": "ملزمة الرياضيات - الترم الأول",
+      "grade": "m3",
+      "subject": "math",
+      "price": 28
+    },
+    {
+      "id": "m3-science-t1",
+      "name": "ملزمة العلوم - الترم الأول",
+      "grade": "m3",
+      "subject": "science",
+      "price": 33
+    },
+    {
+      "id": "m3-social-t1",
+      "name": "ملزمة الدراسات الاجتماعية - الترم الأول",
+      "grade": "m3",
+      "subject": "social",
+      "price": 38
+    },
+    {
+      "id": "s1-arabic-t1",
+      "name": "ملزمة اللغة العربية - الترم الأول",
+      "grade": "s1",
+      "subject": "arabic",
+      "price": 53
+    },
+    {
+      "id": "s1-english-t1",
+      "name": "ملزمة اللغة الإنجليزية - الترم الأول",
+      "grade": "s1",
+      "subject": "english",
+      "price": 38
+    },
+    {
+      "id": "s1-math-t1",
+      "name": "ملزمة الرياضيات - الترم الأول",
+      "grade": "s1",
+      "subject": "math",
+      "price": 43
+    },
+    {
+      "id": "s1-physics-t1",
+      "name": "ملزمة الفيزياء - الترم الأول",
+      "grade": "s1",
+      "subject": "physics",
+      "price": 48
+    },
+    {
+      "id": "s1-chemistry-t1",
+      "name": "ملزمة الكيمياء - الترم الأول",
+      "grade": "s1",
+      "subject": "chemistry",
+      "price": 53
+    },
+    {
+      "id": "s1-biology-t1",
+      "name": "ملزمة الأحياء - الترم الأول",
+      "grade": "s1",
+      "subject": "biology",
+      "price": 38
+    },
+    {
+      "id": "s1-history-t1",
+      "name": "ملزمة التاريخ - الترم الأول",
+      "grade": "s1",
+      "subject": "history",
+      "price": 43
+    },
+    {
+      "id": "s1-geography-t1",
+      "name": "ملزمة الجغرافيا - الترم الأول",
+      "grade": "s1",
+      "subject": "geography",
+      "price": 48
+    },
+    {
+      "id": "s2-arabic-t1",
+      "name": "ملزمة اللغة العربية - الترم الأول",
+      "grade": "s2",
+      "subject": "arabic",
+      "price": 53
+    },
+    {
+      "id": "s2-english-t1",
+      "name": "ملزمة اللغة الإنجليزية - الترم الأول",
+      "grade": "s2",
+      "subject": "english",
+      "price": 38
+    },
+    {
+      "id": "s2-math-t1",
+      "name": "ملزمة الرياضيات - الترم الأول",
+      "grade": "s2",
+      "subject": "math",
+      "price": 43
+    },
+    {
+      "id": "s2-physics-t1",
+      "name": "ملزمة الفيزياء - الترم الأول",
+      "grade": "s2",
+      "subject": "physics",
+      "price": 48
+    },
+    {
+      "id": "s2-chemistry-t1",
+      "name": "ملزمة الكيمياء - الترم الأول",
+      "grade": "s2",
+      "subject": "chemistry",
+      "price": 53
+    },
+    {
+      "id": "s2-biology-t1",
+      "name": "ملزمة الأحياء - الترم الأول",
+      "grade": "s2",
+      "subject": "biology",
+      "price": 38
+    },
+    {
+      "id": "s3-arabic-t1",
+      "name": "ملزمة اللغة العربية - الترم الأول",
+      "grade": "s3",
+      "subject": "arabic",
+      "price": 43
+    },
+    {
+      "id": "s3-english-t1",
+      "name": "ملزمة اللغة الإنجليزية - الترم الأول",
+      "grade": "s3",
+      "subject": "english",
+      "price": 48
+    },
+    {
+      "id": "s3-math-t1",
+      "name": "ملزمة الرياضيات - الترم الأول",
+      "grade": "s3",
+      "subject": "math",
+      "price": 53
+    },
+    {
+      "id": "s3-physics-t1",
+      "name": "ملزمة الفيزياء - الترم الأول",
+      "grade": "s3",
+      "subject": "physics",
+      "price": 38
+    },
+    {
+      "id": "s3-chemistry-t1",
+      "name": "ملزمة الكيمياء - الترم الأول",
+      "grade": "s3",
+      "subject": "chemistry",
+      "price": 43
+    },
+    {
+      "id": "s3-biology-t1",
+      "name": "ملزمة الأحياء - الترم الأول",
+      "grade": "s3",
+      "subject": "biology",
+      "price": 48
+    }
+  ],
+  "grades": [
+    {
+      "id": "p1",
+      "name": "الصف الأول الابتدائي",
+      "short": "الأول",
+      "stage": "primary"
+    },
+    {
+      "id": "p2",
+      "name": "الصف الثاني الابتدائي",
+      "short": "الثاني",
+      "stage": "primary"
+    },
+    {
+      "id": "p3",
+      "name": "الصف الثالث الابتدائي",
+      "short": "الثالث",
+      "stage": "primary"
+    },
+    {
+      "id": "p4",
+      "name": "الصف الرابع الابتدائي",
+      "short": "الرابع",
+      "stage": "primary"
+    },
+    {
+      "id": "p5",
+      "name": "الصف الخامس الابتدائي",
+      "short": "الخامس",
+      "stage": "primary"
+    },
+    {
+      "id": "p6",
+      "name": "الصف السادس الابتدائي",
+      "short": "السادس",
+      "stage": "primary"
+    },
+    {
+      "id": "m1",
+      "name": "الصف الأول الإعدادي",
+      "short": "الأول",
+      "stage": "prep"
+    },
+    {
+      "id": "m2",
+      "name": "الصف الثاني الإعدادي",
+      "short": "الثاني",
+      "stage": "prep"
+    },
+    {
+      "id": "m3",
+      "name": "الصف الثالث الإعدادي",
+      "short": "الثالث",
+      "stage": "prep"
+    },
+    {
+      "id": "s1",
+      "name": "الصف الأول الثانوي",
+      "short": "الأول",
+      "stage": "secondary"
+    },
+    {
+      "id": "s2",
+      "name": "الصف الثاني الثانوي",
+      "short": "الثاني",
+      "stage": "secondary"
+    },
+    {
+      "id": "s3",
+      "name": "الصف الثالث الثانوي",
+      "short": "الثالث",
+      "stage": "secondary"
+    }
+  ],
+  "subjects": [
+    {
+      "id": "arabic",
+      "name": "اللغة العربية"
+    },
+    {
+      "id": "english",
+      "name": "اللغة الإنجليزية"
+    },
+    {
+      "id": "french",
+      "name": "اللغة الفرنسية"
+    },
+    {
+      "id": "math",
+      "name": "الرياضيات"
+    },
+    {
+      "id": "science",
+      "name": "العلوم"
+    },
+    {
+      "id": "social",
+      "name": "الدراسات الاجتماعية"
+    },
+    {
+      "id": "religion",
+      "name": "التربية الدينية"
+    },
+    {
+      "id": "computer",
+      "name": "الحاسب الآلي"
+    },
+    {
+      "id": "physics",
+      "name": "الفيزياء"
+    },
+    {
+      "id": "chemistry",
+      "name": "الكيمياء"
+    },
+    {
+      "id": "biology",
+      "name": "الأحياء"
+    },
+    {
+      "id": "history",
+      "name": "التاريخ"
+    },
+    {
+      "id": "geography",
+      "name": "الجغرافيا"
+    },
+    {
+      "id": "philosophy",
+      "name": "الفلسفة والمنطق"
+    }
+  ],
+  "stages": [
+    {
+      "id": "primary",
+      "name": "المرحلة الابتدائية"
+    },
+    {
+      "id": "prep",
+      "name": "المرحلة الإعدادية"
+    },
+    {
+      "id": "secondary",
+      "name": "المرحلة الثانوية"
+    }
+  ]
+}
