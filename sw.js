@@ -2,13 +2,12 @@
    الاستراتيجية: الشبكة أولًا (حتى تظهر تحديثات الملازم والتدريبات فورًا)،
    وإن تعذر الاتصال نعرض آخر نسخة محفوظة. */
 
-const CACHE = 'abgad-v7';
+const CACHE = 'abgad-v2';
 const SHELL = [
   './',
   'index.html',
   'css/style.css',
   'js/app.js',
-  'js/quiz-engine.js',
   'manifest.json',
   'icons/icon.svg',
   'icons/icon-192.png',

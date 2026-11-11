@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>وحدات القياس</title>
+<script>
+  /* المظهر: يأخذه من التطبيق (?theme=dark) وإلا من إعدادات الجهاز */
+  (function () {
+    var p = new URLSearchParams(location.search).get('theme');
+    var dark = p ? p === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Lalezar&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#EEF4FF; --dots:#D5E2FB; --surface:#fff; --surface2:#F5F8FF; --ink:#1F2350; --muted:#5B6290; --line:#D9E2F7; --edge:#1F2350; --primary:#3E63F5; --onp:#fff; --sun:#FFC933; --ons:#1F2350; --ok:#138A5B; --okbg:#D5F5E3; --bad:#D13B3B; --badbg:#FFE0DA; --focus:#1F2350; }
+  :root[data-theme="dark"] { --bg:#15183D; --dots:#1E2250; --surface:#22265A; --surface2:#2B3070; --ink:#F1F3FF; --muted:#AEB5E6; --line:#373D82; --edge:#0B0D26; --primary:#7C97FF; --onp:#11143A; --sun:#FFD25A; --ons:#1B1E48; --ok:#5BE0A4; --okbg:#1F5A49; --bad:#FF8B8B; --badbg:#5A2F3E; --focus:#FFD25A; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:"Cairo","Segoe UI",Tahoma,sans-serif; line-height:1.7; color:var(--ink); background-color:var(--bg); background-image:radial-gradient(var(--dots) 1.6px, transparent 1.8px); background-size:22px 22px; }
+  main { max-width:620px; margin:0 auto; padding:18px 16px 40px; }
+  h1 { font-family:"Lalezar","Cairo",sans-serif; font-weight:400; font-size:30px; line-height:1.4; margin:0; }
+  .sub { color:var(--muted); font-weight:600; margin:0 0 14px; }
+  .bar { height:14px; background:var(--surface); border:2.5px solid var(--edge); border-radius:999px; overflow:hidden; margin-bottom:6px; }
+  .bar i { display:block; height:100%; width:0; background:var(--sun); border-inline-end:2.5px solid var(--edge); transition:width .3s; }
+  .progress { color:var(--muted); font-weight:700; font-size:14px; margin:0 0 12px; }
+  .q { background:var(--surface); border:2.5px solid var(--edge); border-radius:20px; box-shadow:0 4px 0 var(--edge); padding:16px; }
+  .q h2 { font-size:19px; font-weight:800; line-height:1.6; margin:0 0 12px; }
+  .opts { display:grid; gap:10px; }
+  .opts button { font:inherit; font-weight:700; text-align:right; min-height:52px; padding:8px 14px; border:2.5px solid var(--line); border-radius:14px; background:var(--surface2); color:var(--ink); cursor:pointer; transition:transform .08s; }
+  .opts button:active:not(:disabled) { transform:scale(.98); }
+  .opts button:focus-visible, .next:focus-visible, .again:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+  .opts button.right { background:var(--okbg); border-color:var(--ok); }
+  .opts button.wrong { background:var(--badbg); border-color:var(--bad); }
+  .opts button:disabled { cursor:default; }
+  .fb { min-height:1.8em; margin:12px 0 0; font-weight:800; }
+  .fb.ok { color:var(--ok); } .fb.bad { color:var(--bad); }
+  .note { margin:2px 0 0; color:var(--muted); font-weight:600; font-size:15px; }
+  .btn { display:flex; align-items:center; justify-content:center; width:100%; min-height:54px; margin-top:14px; font:inherit; font-weight:800; font-size:17px; border:2.5px solid var(--edge); border-radius:16px; background:var(--primary); color:var(--onp); box-shadow:0 4px 0 var(--edge); cursor:pointer; }
+  .btn:active { transform:translateY(3px); box-shadow:0 1px 0 var(--edge); }
+  .btn.alt { background:var(--sun); color:var(--ons); }
+  .result { text-align:center; background:var(--surface); border:2.5px solid var(--edge); border-radius:24px; box-shadow:0 4px 0 var(--edge); padding:22px 16px; }
+  .stars { font-size:44px; letter-spacing:6px; line-height:1.3; }
+  .result h2 { font-family:"Lalezar","Cairo",sans-serif; font-weight:400; font-size:30px; margin:4px 0; line-height:1.4; }
+  .result p { margin:0; color:var(--muted); font-weight:700; }
+  .score { display:inline-block; margin:10px 0 4px; padding:0 18px; background:var(--sun); color:var(--ons); border:2.5px solid var(--edge); border-radius:999px; font-weight:800; font-size:22px; }
+  footer { text-align:center; color:var(--muted); font-size:14px; font-weight:700; margin-top:22px; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>وحدات القياس</h1>
+  <p class="sub">اختر الإجابة الصحيحة</p>
+  <div id="stage"></div>
+  <footer>مكتبة أبجد</footer>
+</main>
+<script>
+/* type: "mc" اختيار من متعدد | "tf" صح وغلط. a = رقم الإجابة الصحيحة. note = شرح اختياري يظهر بعد الإجابة */
+const QUESTIONS = [{"type": "mc", "q": "وحدة قياس الكتلة في النظام الدولي:", "o": ["الجرام", "الكيلوجرام", "الطن"], "a": 1}, {"type": "mc", "q": "وحدة قياس الزمن في النظام الدولي:", "o": ["الدقيقة", "الساعة", "الثانية"], "a": 2}, {"type": "mc", "q": "وحدة قياس الطول في النظام الدولي:", "o": ["السنتيمتر", "المتر", "الكيلومتر"], "a": 1}, {"type": "tf", "q": "وحدة قياس القوة هي النيوتن.", "a": 0}, {"type": "mc", "q": "الكمية التي لها مقدار واتجاه تسمى:", "o": ["كمية قياسية", "كمية متجهة", "كمية ثابتة"], "a": 1}];
+const stage = document.getElementById('stage');
+let i = 0, score = 0;
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function show() {
+  const q = QUESTIONS[i];
+  const opts = q.type === 'tf' ? ['صح', 'غلط'] : q.o;
+  stage.innerHTML =
+    '<div class="bar" aria-hidden="true"><i style="width:' + (i / QUESTIONS.length * 100) + '%"></i></div>' +
+    '<p class="progress">السؤال ' + (i + 1) + ' من ' + QUESTIONS.length + '</p>' +
+    '<section class="q"><h2 id="qt" tabindex="-1">' + esc(q.q) + '</h2><div class="opts" role="group" aria-labelledby="qt"></div>' +
+    '<p class="fb" role="status" aria-live="polite"></p><p class="note"></p></section>';
+  const box = stage.querySelector('.opts');
+  const fb = stage.querySelector('.fb');
+  opts.forEach((t, oi) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.textContent = t;
+    b.addEventListener('click', () => {
+      box.querySelectorAll('button').forEach(x => x.disabled = true);
+      if (oi === q.a) { b.classList.add('right'); fb.className = 'fb ok'; fb.textContent = 'أحسنت! إجابة صحيحة'; score++; }
+      else { b.classList.add('wrong'); box.children[q.a].classList.add('right'); fb.className = 'fb bad'; fb.textContent = 'الإجابة الصحيحة: ' + opts[q.a]; }
+      if (q.note) stage.querySelector('.note').textContent = q.note;
+      const n = document.createElement('button');
+      n.type = 'button'; n.className = 'btn next';
+      n.textContent = i === QUESTIONS.length - 1 ? 'اعرض النتيجة' : 'السؤال التالي';
+      n.addEventListener('click', () => { i++; i < QUESTIONS.length ? show() : finish(); window.scrollTo(0, 0); });
+      stage.querySelector('.q').appendChild(n);
+      n.focus({ preventScroll: true });
+    });
+    box.appendChild(b);
+  });
+}
+
+function finish() {
+  const pct = score / QUESTIONS.length;
+  const stars = pct >= 0.9 ? 3 : pct >= 0.6 ? 2 : pct > 0 ? 1 : 0;
+  const msg = pct >= 0.9 ? 'ممتاز! أنت بطل' : pct >= 0.6 ? 'جيد جدًا، كمّل' : 'محاولة حلوة، جرّب مرة أخرى';
+  stage.innerHTML =
+    '<section class="result"><div class="stars" aria-hidden="true">' + '⭐'.repeat(stars) + '☆'.repeat(3 - stars) + '</div>' +
+    '<h2 id="rt" tabindex="-1">' + msg + '</h2><p>نتيجتك</p><div class="score">' + score + ' من ' + QUESTIONS.length + '</div>' +
+    '<button type="button" class="btn alt again">حاول مرة أخرى</button></section>';
+  stage.querySelector('#rt').focus({ preventScroll: true });
+  stage.querySelector('.again').addEventListener('click', () => { i = 0; score = 0; show(); window.scrollTo(0, 0); });
+}
+show();
+</script>
+</body>
+</html>

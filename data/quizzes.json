@@ -1,0 +1,66 @@
+{
+  "quizzes": [
+    {
+      "id": "q-p1-arabic-letters",
+      "title": "الحروف الهجائية",
+      "description": "تعرّف على الحروف وأشكالها وأصواتها",
+      "grade": "p1",
+      "subject": "arabic",
+      "file": "quizzes/p1-arabic-letters.html",
+      "questions": 5,
+      "minutes": 3
+    },
+    {
+      "id": "q-p2-math-count",
+      "title": "الجمع والطرح",
+      "description": "عمليات الجمع والطرح داخل الـ 100",
+      "grade": [
+        "p2"
+      ],
+      "subject": "math",
+      "file": "quizzes/p2-math-count.html",
+      "questions": 6,
+      "minutes": 4
+    },
+    {
+      "id": "q-p3-math-ops",
+      "title": "العمليات الحسابية",
+      "description": "الجمع والطرح والضرب في دقائق",
+      "grade": "p3",
+      "subject": "math",
+      "file": "quizzes/p3-math-ops.html",
+      "questions": 6,
+      "minutes": 4
+    },
+    {
+      "id": "q-p5-science-states",
+      "title": "حالات المادة",
+      "description": "الصلبة والسائلة والغازية",
+      "grade": "p5",
+      "subject": "science",
+      "file": "quizzes/p5-science-states.html",
+      "questions": 5,
+      "minutes": 4
+    },
+    {
+      "id": "q-m1-english-tenses",
+      "title": "Present Simple",
+      "description": "اختبار قصير على المضارع البسيط",
+      "grade": "m1",
+      "subject": "english",
+      "file": "quizzes/m1-english-tenses.html",
+      "questions": 5,
+      "minutes": 4
+    },
+    {
+      "id": "q-s1-physics-units",
+      "title": "وحدات القياس",
+      "description": "وحدات القياس الأساسية في الفيزياء",
+      "grade": "s1",
+      "subject": "physics",
+      "file": "quizzes/s1-physics-units.html",
+      "questions": 5,
+      "minutes": 4
+    }
+  ]
+}
