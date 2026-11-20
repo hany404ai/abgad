@@ -1,0 +1,19 @@
+{
+  "id": "./",
+  "name": "المكتبة",
+  "short_name": "المكتبة",
+  "description": "اختر الملازم التي تحتاجها وأرسل طلبك إلى المكتبة عبر واتساب.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EEF4FF",
+  "theme_color": "#FFC933",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
