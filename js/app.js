@@ -71,6 +71,7 @@
 
     view: 'notebooks',
     meTab: 'orders',
+    autoQuizKey: '',
     f: { products: Object.assign(newFilters(), { sort: 'default' }), quizzes: newFilters() },
 
     onb: null,
@@ -912,9 +913,19 @@
 
   /* ---------- العرض والتنقل ---------- */
 
+  // الروابط العميقة: #quizzes/<quiz-id> تفتح الاختبار داخل المكتبة.
+  function currentLink() {
+    const parts = location.hash.replace(/^#/, '').split('/').filter(Boolean);
+    const view = VIEWS[parts[0]] ? parts[0] : 'notebooks';
+    let quizId = '';
+    if (view === 'quizzes' && parts[1]) {
+      try { quizId = decodeURIComponent(parts[1]); } catch (_) { quizId = parts[1]; }
+    }
+    return { view, quizId };
+  }
+
   function route() {
-    const h = location.hash.replace('#', '');
-    return VIEWS[h] ? h : 'notebooks';
+    return currentLink().view;
   }
 
   function whoLabel() {
@@ -926,10 +937,18 @@
 
   function renderView(focusSel) {
     if (!state.profile) return;
-    state.view = route();
+    const link = currentLink();
+    state.view = link.view;
     $('#view').innerHTML = VIEWS[state.view]();
     if (state.view === 'notebooks') renderResults('products');
-    if (state.view === 'quizzes') renderResults('quizzes');
+    if (state.view === 'quizzes') {
+      renderResults('quizzes');
+      const key = link.quizId ? `quizzes/${link.quizId}` : '';
+      if (key && key !== state.autoQuizKey && state.quizMap.has(link.quizId)) {
+        state.autoQuizKey = key;
+        openQuiz(link.quizId);
+      }
+    }
 
     $$('.tabs a').forEach((a) => {
       const active = a.dataset.tab === (state.view === 'cart' ? 'notebooks' : state.view);
@@ -1054,10 +1073,12 @@
     state.f = { products: Object.assign(newFilters(), { sort: 'default' }), quizzes: newFilters() };
     setOverlay('');
     $('#app').hidden = false;
-    history.replaceState(null, '', '#notebooks');
+    const link = currentLink();
+    const isQuizLink = link.view === 'quizzes' && !!link.quizId;
+    if (!isQuizLink) history.replaceState(null, '', '#notebooks');
     renderView();
     window.scrollTo(0, 0);
-    setTimeout(openInstallSheet, 400); // بعد استكمال البيانات نعرض خطوة التثبيت
+    if (!isQuizLink) setTimeout(openInstallSheet, 400); // بعد استكمال البيانات نعرض خطوة التثبيت
   }
 
   /* ---------- تثبيت التطبيق ---------- */
@@ -1125,9 +1146,12 @@
 
   /* ---------- الاختبارات ---------- */
 
+  // المشاركة ترسل رابط المكتبة نفسه مع وسم الاختبار، فيدخل المستلم إلى التطبيق
+  // ويستطيع تصفح الملازم، ثم يُفتح له الاختبار المطلوب تلقائيًا.
   function quizLink(x) {
-    const url = new URL(x.file, document.baseURI);
-    if (x.minutes) url.searchParams.set('minutes', String(x.minutes));
+    const url = new URL(document.baseURI);
+    url.search = '';
+    url.hash = `quizzes/${encodeURIComponent(x.id)}`;
     return url.href;
   }
 
@@ -1154,7 +1178,7 @@
       `<div class="sheet-modal" role="dialog" aria-modal="true" aria-labelledby="share-title">
          <div class="sheet-panel share-panel">
            <h2 id="share-title" tabindex="-1">مشاركة الاختبار</h2>
-           <p>اختر التطبيق لإرسال رابط الاختبار</p>
+           <p>اختر التطبيق لإرسال رابط المكتبة والاختبار</p>
            <div class="share-apps">
              ${links}
              <button type="button" class="share-app" data-act="share-copy">
@@ -1174,7 +1198,7 @@
   async function shareQuiz(id) {
     const x = state.quizMap.get(id);
     if (!x) return;
-    const data = { title: x.title, text: `جرّب هذا الاختبار: ${x.title}`, url: quizLink(x) };
+    const data = { title: x.title, text: `جرّب هذا الاختبار في المكتبة: ${x.title}`, url: quizLink(x) };
     if (navigator.share) {
       try {
         await navigator.share(data);
@@ -1190,7 +1214,7 @@
     const x = state.quizMap.get(id);
     if (!x) return;
     state.lastFocus = document.activeElement;
-    const params = new URLSearchParams({ theme: resolvedTheme() });
+    const params = new URLSearchParams({ theme: resolvedTheme(), quiz: x.id });
     if (x.minutes) params.set('minutes', String(x.minutes));
     const sep = x.file.includes('?') ? '&' : '?';
     const src = `${x.file}${sep}${params}`; // الاختبارات الجاهزة تقرأ theme وminutes لتطابق المظهر والوقت

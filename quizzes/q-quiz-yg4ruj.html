@@ -12,6 +12,7 @@
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
   })();
 </script>
+<link rel="icon" href="../icons/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Lalezar&display=swap" rel="stylesheet">
@@ -189,7 +190,7 @@ show();
     panel.className = 'quiz-share-panel';
     panel.innerHTML =
       '<h2 id="quiz-share-title" tabindex="-1">مشاركة الاختبار</h2>' +
-      '<p class="quiz-share-hint">اختر التطبيق لإرسال رابط الاختبار</p>' +
+      '<p class="quiz-share-hint">اختر التطبيق لإرسال رابط المكتبة والاختبار</p>' +
       '<div class="quiz-share-apps"></div>' +
       '<button type="button" class="quiz-share-close">إغلاق</button>';
     var list = panel.querySelector('.quiz-share-apps');
@@ -235,8 +236,13 @@ show();
   });
 
   share.addEventListener('click', async function () {
-    var url = location.href;
-    var data = { title: document.title, text: 'جرّب هذا الاختبار: ' + document.title, url: url };
+    var quizId = new URLSearchParams(location.search).get('quiz');
+    if (!quizId) quizId = location.pathname.split('/').pop().replace(/\.html$/, '');
+    var appUrl = new URL('../index.html', location.href);
+    appUrl.search = '';
+    appUrl.hash = 'quizzes/' + encodeURIComponent(quizId);
+    var url = appUrl.href;
+    var data = { title: document.title, text: 'جرّب هذا الاختبار في المكتبة: ' + document.title, url: url };
     if (navigator.share) {
       try { await navigator.share(data); return; }
       catch (e) { if (e && e.name === 'AbortError') return; }
