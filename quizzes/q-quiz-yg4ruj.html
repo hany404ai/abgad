@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بنك اسئلة الوحدة الاولي - العلوم</title>
+<script>
+  /* المظهر: يأخذه من التطبيق (?theme=dark) وإلا من إعدادات الجهاز */
+  (function () {
+    var p = new URLSearchParams(location.search).get('theme');
+    var dark = p ? p === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Lalezar&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#EEF4FF; --dots:#D5E2FB; --surface:#fff; --surface2:#F5F8FF; --ink:#1F2350; --muted:#5B6290; --line:#D9E2F7; --edge:#1F2350; --primary:#3E63F5; --onp:#fff; --sun:#FFC933; --ons:#1F2350; --ok:#138A5B; --okbg:#D5F5E3; --bad:#D13B3B; --badbg:#FFE0DA; --focus:#1F2350; }
+  :root[data-theme="dark"] { --bg:#15183D; --dots:#1E2250; --surface:#22265A; --surface2:#2B3070; --ink:#F1F3FF; --muted:#AEB5E6; --line:#373D82; --edge:#0B0D26; --primary:#7C97FF; --onp:#11143A; --sun:#FFD25A; --ons:#1B1E48; --ok:#5BE0A4; --okbg:#1F5A49; --bad:#FF8B8B; --badbg:#5A2F3E; --focus:#FFD25A; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:"Cairo","Segoe UI",Tahoma,sans-serif; line-height:1.7; color:var(--ink); background-color:var(--bg); background-image:radial-gradient(var(--dots) 1.6px, transparent 1.8px); background-size:22px 22px; }
+  main { max-width:620px; margin:0 auto; padding:18px 16px 40px; }
+  h1 { font-family:"Lalezar","Cairo",sans-serif; font-weight:400; font-size:30px; line-height:1.4; margin:0; }
+  .sub { color:var(--muted); font-weight:600; margin:0 0 14px; }
+  .bar { height:14px; background:var(--surface); border:2.5px solid var(--edge); border-radius:999px; overflow:hidden; margin-bottom:6px; }
+  .bar i { display:block; height:100%; width:0; background:var(--sun); border-inline-end:2.5px solid var(--edge); transition:width .3s; }
+  .progress { color:var(--muted); font-weight:700; font-size:14px; margin:0 0 12px; }
+  .q { background:var(--surface); border:2.5px solid var(--edge); border-radius:20px; box-shadow:0 4px 0 var(--edge); padding:16px; }
+  .q h2 { font-size:19px; font-weight:800; line-height:1.6; margin:0 0 12px; }
+  .opts { display:grid; gap:10px; }
+  .opts button { font:inherit; font-weight:700; text-align:right; min-height:52px; padding:8px 14px; border:2.5px solid var(--line); border-radius:14px; background:var(--surface2); color:var(--ink); cursor:pointer; transition:transform .08s; }
+  .opts button:active:not(:disabled) { transform:scale(.98); }
+  .opts button:focus-visible, .next:focus-visible, .again:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+  .opts button.right { background:var(--okbg); border-color:var(--ok); }
+  .opts button.wrong { background:var(--badbg); border-color:var(--bad); }
+  .opts button:disabled { cursor:default; }
+  .fb { min-height:1.8em; margin:12px 0 0; font-weight:800; }
+  .fb.ok { color:var(--ok); } .fb.bad { color:var(--bad); }
+  .note { margin:2px 0 0; color:var(--muted); font-weight:600; font-size:15px; }
+  .btn { display:flex; align-items:center; justify-content:center; width:100%; min-height:54px; margin-top:14px; font:inherit; font-weight:800; font-size:17px; border:2.5px solid var(--edge); border-radius:16px; background:var(--primary); color:var(--onp); box-shadow:0 4px 0 var(--edge); cursor:pointer; }
+  .btn:active { transform:translateY(3px); box-shadow:0 1px 0 var(--edge); }
+  .btn.alt { background:var(--sun); color:var(--ons); }
+  .result { text-align:center; background:var(--surface); border:2.5px solid var(--edge); border-radius:24px; box-shadow:0 4px 0 var(--edge); padding:22px 16px; }
+  .stars { font-size:44px; letter-spacing:6px; line-height:1.3; }
+  .result h2 { font-family:"Lalezar","Cairo",sans-serif; font-weight:400; font-size:30px; margin:4px 0; line-height:1.4; }
+  .result p { margin:0; color:var(--muted); font-weight:700; }
+  .score { display:inline-block; margin:10px 0 4px; padding:0 18px; background:var(--sun); color:var(--ons); border:2.5px solid var(--edge); border-radius:999px; font-weight:800; font-size:22px; }
+  footer { text-align:center; color:var(--muted); font-size:14px; font-weight:700; margin-top:22px; }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+
+</head>
+<body>
+<main>
+  <h1>بنك اسئلة الوحدة الاولي - العلوم</h1>
+  <p class="sub">اختر الإجابة الصحيحة</p>
+  <div id="stage"></div>
+  <footer>المكتبة</footer>
+</main>
+<script>
+/* type: "mc" اختيار من متعدد | "tf" صح وغلط. a = رقم الإجابة الصحيحة. note = شرح اختياري يظهر بعد الإجابة */
+const QUESTIONS = [{"type":"tf","q":"صواب أم خطأ: تنمو زهرة اللوتس في التربة الصحراوية الجافة شديدة الحرارة.","a":1,"note":"تنبت زهرة اللوتس في الأراضي الرطبة والمستنقعات وعلى ضفاف نهر النيل وليست الصحاري الجافة."},{"type":"tf","q":"أذن ثعلب الغابة أكبر حجمًا من أذن ثعلب الفنك الصحراوي.","a":1,"note":"تمتلك ثعالب الفنك آذانًا كبيرة جدًا تفوق حجم آذان ثعالب الغابات للمساعدة في تنظيم حرارة الجسم."},{"type":"mc","q":"يمتلك اليربوع أرcols خلفية طويلة تساعده جسدياً على:","o":["تبريد الأذن الكبيرة عن طريق ضخ الدماء إليها","القفز لمسافات طويلة وتقليل زمن تلامس أقدامه مع الرمال الساخنة","حفر الجحور العملاقة أثناء ساعات الليل فقط","التغذية المباشرة على أوراق الأشجار العالية كأشجار السنط"],"a":1,"note":"الأرجل الطويلة تمكن اليربوع من الهروب السريع بالقفز كالكنغر وتقليل ملامسة الأرض الحارة."},{"type":"tf","q":"يُصنف الثعبان والسمكة في مجموعة الكائنات الحية التي تمتلك أربع أرجل.","a":1,"note":"ينتمي كل من الثعبان والسمكة إلى مجموعة الكائنات الحية التي تعيش وتتحرك بدون أرجل."},{"type":"tf","q":"يستخدم اليربوع أرجله الأمامية الطويلة للقفز لمسافات طويلة وتجنب ملامسة الأراضي الساخنة.","a":1,"note":""},{"type":"mc","q":"أي الطيور التالية يتخذ من ضفاف نهر النيل والأراضي الزراعية والمناطق الخضراء موطناً طبيعياً له؟","o":["أبو قردان","قط الرمال","الكوبرا","النسر الصحراوي"],"a":0,"note":"يعيش أبو قردان بالقرب من الحقول والأراضي الزراعية الخضراء وضفاف النيل."},{"type":"mc","q":"ما إجراء السلامة الواجب مراعاته بدقة أثناء الفحص الميداني باستخدام العدسة المكبرة؟","o":["لمس جميع الحشرات والعقارب باليد المجردة لتحديد ملمسها.","ارتداء نظارات معتمة تمنع رؤية ألوان الكائنات الحية.","غسل الكائنات الحية بالمواد الكيميائية قبل الملاحظة.","عدم النظر أبداً إلى الشمس مباشرة باستخدام العدسة المكبرة."],"a":3,"note":"تركيز أشعة الشمس عبر العدسة إلى العين يتسبب في تلف القرنية والأذى المباشر للرؤية."},{"type":"mc","q":"عند تصنيف الكائنات الحية بناءً على اللون، أيٌّ من المجموعات التالية تضم كائنات ذات ألوان متعددة (عديدة الألوان)؟","o":["النسر والكوبرا المصرية","الفراشة وزهرة اللوتس","العنكبوت والنمل","الجراد والنباتات الخضراء"],"a":1,"note":"تتميز الفراشات وأزهار اللوتس بتنوع ألوانها الجذابة والزهية."},{"type":"mc","q":"امتلاك ثعلب الفنك لأذنين كبيرتين يُعتبر تكيفاً جسمانياً يساعده على:","o":["الطيران العالي في السماء للهروب من المفترسات.","تبريد أجزاء الجسم عن طريق خروج الحرارة الزائدة.","تخزين كميات ضخمة من المياه داخل أذنيه.","زيادة وزنه وحجمه للدفء في الشديد."],"a":1,"note":"تسمح المساحة الواسعة للأذنين الكبيرتين بشعيرات دموية تبدد الحرارة الزائدة وتبرد جسم ثعلب الفنك."},{"type":"tf","q":"تلجأ بعض الحيوانات مثل العقارب والسحالي للعيش أسفل الصخور للبحث عن أماكن رطبة وباردة بعيداً عن أشعة الشمس.","a":0,"note":"توفر الظلال وتشققات الصخور بيئة رطبة وباردة تحمي هذه الكائنات من الحرارة الشديدة وأشعة الشمس."},{"type":"tf","q":"تعتمد السحالي الصحراوية في حصولها على الماء بشكل أساسي على الماء الموجود في غذائها.","a":0,"note":""},{"type":"tf","q":"يمكن تصنيف السحلية والعنكبوت في مجموعة واحدة من حيث الشكل بناءً على امتلاك كلينا لثماني أرجل.","a":1,"note":"يمتلك العنكبوت 8 أرجل بينما تمتلك السحلية 4 أرجل فقط، مما يضعهما في مجموعتين مختلفين في الشكل."},{"type":"mc","q":"تتشابه جميع البيئات في خصائصها، مما يسمح للكائنات الحية بالانتقال للعيش في أي موطن دون الحاجة لتكيفات خاصة.","o":["خطأ","صواب"],"a":0,"note":"كل بيئة تتميز بخصائص فريدة تتطلب تكيفات جثمانية أو سلوكية خاصة بالكائنات التي تستوطنها."},{"type":"mc","q":"يمتلك نبات السنط جذوراً تمتد عميقاً تحت سطح الأرض للوصول إلى __________.","o":["أشعة الشمس","الصخور الصلبة","المياه الجوفية","الأكسجين الجوي"],"a":2,"note":"تنمو جذور السنط عميقاً للبحث عن المياه في طبقات الأرض السفلى لتعويض جفاف السطح."},{"type":"mc","q":"ماذا يحدث لو كانت أوراق نبات السنط الصحراوي عريضة وكبيرة الحجم بدلاً من كونها صغيرة؟","o":["ستتحول الجذور مباشرة إلى ثمار حلوة المذاق.","سينمو النبات بشكل أسرع دون الحاجة للمياه.","سيفقد النبات كميات كبيرة من الماء عن طريق النتح وتجف أنسجته.","سيزداد امتصاص المياه الجوفية من أعماق الأرض تلقائياً."],"a":2,"note":"المساحة الكبيرة للأوراق تزيد من معدل تبخر المياه تحت أشعة الشمس الحارقة، مما يؤدي إلى فقدان الماء وسرعة جفاف النبات."}];
+const stage = document.getElementById('stage');
+let i = 0, score = 0;
+
+/* ── ترميز النص والرياضيات: مطابق لأسلوب exam-builder v3 ── */
+var TEX_CMD={'forall':1,'frac':1,'fbox':1,'fcolorbox':1,'text':1,'times':1,'tan':1,'tanh':1,'to':1,'theta':1,'tau':1,'top':1,'triangle':1,'triangledown':1,'tilde':1,'textbf':1,'textit':1,'textrm':1,'textsf':1,'texttt':1,'textcomp':1,'textellipsis':1,'textmu':1,'textdegree':1,'textcopyright':1,'textregistered':1,'texttrademark':1,'tfrac':1,'textasciitilde':1,'textbar':1,'textbigcirc':1,'textbullet':1,'textdagger':1,'textdollar':1,'textemdash':1,'textendash':1,'textexclam':1,'textgreater':1,'textless':1,'textparagraph':1,'textperiodcentered':1,'textquestiondown':1,'textsection':1,'textunderscore':1,'textwon':1,'tag':1,'thickmuskip':1,'beta':1,'bar':1,'begin':1,'backslash':1,'big':1,'bigg':1,'bigl':1,'bigm':1,'biggr':1,'biggm':1,'bigr':1,'biggl':1,'Big':1,'Bigg':1,'Bigl':1,'Bigm':1,'Biggl':1,'Biggm':1,'Bigr':1,'bigvert':1,'Bigvert':1,'biglvert':1,'bigrvert':1,'Biglvert':1,'Bigrvert':1,'biggroup':1,'Biggroup':1,'bigmvert':1,'Bigmvert':1,'blacktriangle':1,'blacktriangledown':1,'blacksquare':1,'blacklozenge':1,'binom':1,'bmod':1,'box':1,'boxed':1,'nu':1,'nabla':1,'not':1,'newline':1,'ne':1,'neq':1,'neg':1,'notin':1,'notequ':1,'notsubset':1,'notsupset':1,'nleq':1,'ngeq':1,'nll':1,'nlt':1,'ngt':1,'ngg':1,'nmid':1,'nparallel':1,'notag':1,'newcommand':1,'newenvironment':1,'noindent':1,'ni':1,'right':1,'rightarrow':1,'rightarrowfill':1,'rightarrowtail':1,'rightarrowstail':1,'rightarrowtriangle':1,'rightarrowdoublearrow':1,'rightleftarrows':1,'rightharpoonup':1,'rightharpoondown':1,'rightdownarrow':1,'rightuparrow':1,'root':1,'rho':1,'rangle':1,'rfloor':1,'rceil':1,'rvert':1,'Rvert':1,'rgroup':1};
+var CTRL_MAP = { '\b':'b','\t':'t','\n':'n','\f':'f','\r':'r' };
+function fixCtrl(s){ if(typeof s!=='string')return s; if(!/[\b\t\n\f\r]/.test(s))return s; return s.replace(/([\b\t\n\f\r])([A-Za-z]+)/g,function(m,c,rest){var letter=CTRL_MAP[c];if(!letter)return m;var cmd=letter+rest;if(!TEX_CMD[cmd])return m;return '\\'+cmd;}); }
+function esc0(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function mk(s){ return String(s).replace(/\uE000/g,'<sup>').replace(/\uE001/g,'</sup>').replace(/\uE002/g,'<sub>').replace(/\uE003/g,'</sub>'); }
+function esc(s){ return mk(esc0(fixCtrl(String(s==null?'':s)))); }
+function hasMath(s){ return typeof s==='string' && (s.indexOf('$')!==-1 || s.indexOf('\\(')!==-1 || s.indexOf('\\[')!==-1); }
+var MATH_RE = /(\$\$[\s\S]+?\$\$|\$[^$\n]+?\$|\\\([\s\S]+?\\\)|\\\[[\s\S]+?\\\])/g;
+function isMathPart(p){ return /^\$\$[\s\S]+\$\$$/.test(p) || /^\$[^$\n]+\$$/.test(p) || /^\\\([\s\S]+\\\)$/.test(p) || /^\\\[[\s\S]+\\\]$/.test(p); }
+function mathSpan(part){
+  var display=false, tex=null;
+  if(/^\$\$[\s\S]+\$\$$/.test(part)){ tex=part.slice(2,-2); display=true; }
+  else if(/^\$[^$\n]+\$$/.test(part)){ tex=part.slice(1,-1); }
+  else if(/^\\\([\s\S]+\\\)$/.test(part)){ tex=part.slice(2,-2); }
+  else if(/^\\\[[\s\S]+\\\]$/.test(part)){ tex=part.slice(2,-2); display=true; }
+  if(tex===null) return esc0(part);
+  tex=fixCtrl(tex);
+  var attrs=' class="math" dir="ltr" data-tex="'+esc0(tex)+'"', out=null;
+  if(typeof katex!=='undefined' && katex && katex.renderToString){
+    var w=console.warn; console.warn=function(){};
+    try{ out=katex.renderToString(tex,{displayMode:display,throwOnError:false,strict:'ignore',trust:false,output:'html'}); }
+    catch(e){ out=null; } finally{ console.warn=w; }
+  }
+  if(!out) return '<span'+attrs+'><span class="math-raw">'+esc0(tex)+'</span></span>';
+  return '<span'+attrs+'>'+out+'</span>';
+}
+function rich(s){ s=fixCtrl(String(s==null?'':s)); if(!hasMath(s)) return esc(s); return s.split(MATH_RE).map(function(p){ return isMathPart(p) ? mathSpan(p) : esc(p); }).join(''); }
+
+function show() {
+  const q = QUESTIONS[i];
+  const opts = q.type === 'tf' ? ['صح', 'غلط'] : q.o;
+  stage.innerHTML =
+    '<div class="bar" aria-hidden="true"><i style="width:' + (i / QUESTIONS.length * 100) + '%"></i></div>' +
+    '<p class="progress">السؤال ' + (i + 1) + ' من ' + QUESTIONS.length + '</p>' +
+    '<section class="q"><h2 id="qt" tabindex="-1">' + rich(q.q) + '</h2><div class="opts" role="group" aria-labelledby="qt"></div>' +
+    '<p class="fb" role="status" aria-live="polite"></p><p class="note"></p></section>';
+  const box = stage.querySelector('.opts');
+  const fb = stage.querySelector('.fb');
+  opts.forEach((t, oi) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.innerHTML = rich(t);
+    b.addEventListener('click', () => {
+      box.querySelectorAll('button').forEach(x => x.disabled = true);
+      if (oi === q.a) { b.classList.add('right'); fb.className = 'fb ok'; fb.textContent = 'أحسنت! إجابة صحيحة'; score++; }
+      else { b.classList.add('wrong'); box.children[q.a].classList.add('right'); fb.className = 'fb bad'; fb.innerHTML = 'الإجابة الصحيحة: ' + rich(opts[q.a]); }
+      if (q.note) stage.querySelector('.note').innerHTML = rich(q.note);
+      const n = document.createElement('button');
+      n.type = 'button'; n.className = 'btn next';
+      n.textContent = i === QUESTIONS.length - 1 ? 'اعرض النتيجة' : 'السؤال التالي';
+      n.addEventListener('click', () => { i++; i < QUESTIONS.length ? show() : finish(); window.scrollTo(0, 0); });
+      stage.querySelector('.q').appendChild(n);
+      n.focus({ preventScroll: true });
+    });
+    box.appendChild(b);
+  });
+}
+
+function finish() {
+  const pct = score / QUESTIONS.length;
+  const stars = pct >= 0.9 ? 3 : pct >= 0.6 ? 2 : pct > 0 ? 1 : 0;
+  const msg = pct >= 0.9 ? 'ممتاز! أنت بطل' : pct >= 0.6 ? 'جيد جدًا، كمّل' : 'محاولة حلوة، جرّب مرة أخرى';
+  stage.innerHTML =
+    '<section class="result"><div class="stars" aria-hidden="true">' + '⭐'.repeat(stars) + '☆'.repeat(3 - stars) + '</div>' +
+    '<h2 id="rt" tabindex="-1">' + msg + '</h2><p>نتيجتك</p><div class="score">' + score + ' من ' + QUESTIONS.length + '</div>' +
+    '<button type="button" class="btn alt again">حاول مرة أخرى</button></section>';
+  stage.querySelector('#rt').focus({ preventScroll: true });
+  stage.querySelector('.again').addEventListener('click', () => { i = 0; score = 0; show(); window.scrollTo(0, 0); });
+}
+show();
+</script>
+<script data-quiz-tools>
+(function () {
+  var main = document.querySelector('main');
+  if (!main) return;
+  var css = document.createElement('style');
+  css.textContent = '.quiz-tools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 12px}' +
+    '.timer{margin:0;font-weight:800;font-size:15px;padding:6px 12px;border:2px solid var(--edge);border-radius:999px;background:var(--surface2);color:var(--ink)}' +
+    '.timer.low{background:var(--badbg);color:var(--bad);border-color:var(--bad)}' +
+    '.share-btn{min-height:40px;padding:6px 12px;font:inherit;font-weight:800;border:2px solid var(--edge);border-radius:12px;background:var(--sun);color:var(--ons);cursor:pointer;margin-inline-start:auto}' +
+    '.quiz-share-backdrop{position:fixed;inset:0;z-index:200;display:flex;align-items:flex-end;justify-content:center;background:rgba(6,8,28,.66);padding:12px}' +
+    '.quiz-share-panel{width:100%;max-width:460px;padding:22px 18px;background:var(--surface);color:var(--ink);border:2.5px solid var(--edge);border-radius:24px;box-shadow:0 4px 0 var(--edge)}' +
+    '.quiz-share-panel h2{font-family:"Lalezar","Cairo",sans-serif;font-weight:400;font-size:24px;margin:0 0 2px}' +
+    '.quiz-share-hint{color:var(--muted);font-weight:600;font-size:14px;margin:0 0 14px}' +
+    '.quiz-share-apps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}' +
+    '.quiz-share-app{display:flex;align-items:center;gap:10px;min-height:52px;padding:8px 12px;background:var(--surface2);color:var(--ink);text-decoration:none;border:2px solid var(--line);border-radius:14px;font:700 15px Cairo,sans-serif;cursor:pointer;text-align:start}' +
+    '.quiz-share-app span:first-child{flex:none;width:28px;text-align:center;font-size:20px;line-height:1}' +
+    '.quiz-share-close{width:100%;min-height:44px;margin-top:14px;font:800 15px Cairo,sans-serif;color:var(--ink);background:transparent;border:2px solid var(--line);border-radius:12px;cursor:pointer}';
+  document.head.appendChild(css);
+  var tools = document.createElement('div');
+  tools.className = 'quiz-tools';
+  var timer = document.createElement('p');
+  timer.className = 'timer';
+  timer.id = 'quiz-timer';
+  timer.setAttribute('role', 'timer');
+  timer.hidden = true;
+  var share = document.createElement('button');
+  share.type = 'button';
+  share.className = 'share-btn';
+  share.textContent = 'مشاركة الاختبار';
+  share.setAttribute('aria-label', 'مشاركة رابط الاختبار');
+  tools.appendChild(timer);
+  tools.appendChild(share);
+  var sub = main.querySelector('.sub');
+  main.insertBefore(tools, sub ? sub.nextSibling : document.getElementById('stage'));
+
+  function openShareSheet(data) {
+    var u = encodeURIComponent(data.url);
+    var tx = encodeURIComponent(data.text);
+    var apps = [
+      ['واتساب', '💬', 'https://wa.me/?text=' + encodeURIComponent(data.text + ' ' + data.url)],
+      ['فيسبوك', '📘', 'https://www.facebook.com/sharer/sharer.php?u=' + u],
+      ['تيليجرام', '✈️', 'https://t.me/share/url?url=' + u + '&text=' + tx],
+      ['إكس', '𝕏', 'https://twitter.com/intent/tweet?url=' + u + '&text=' + tx],
+      ['البريد الإلكتروني', '✉️', 'mailto:?subject=' + tx + '&body=' + u]
+    ];
+    var back = document.createElement('div');
+    back.className = 'quiz-share-backdrop';
+    back.setAttribute('role', 'dialog');
+    back.setAttribute('aria-modal', 'true');
+    back.setAttribute('aria-label', 'مشاركة الاختبار');
+    var panel = document.createElement('div');
+    panel.className = 'quiz-share-panel';
+    panel.innerHTML =
+      '<h2 id="quiz-share-title" tabindex="-1">مشاركة الاختبار</h2>' +
+      '<p class="quiz-share-hint">اختر التطبيق لإرسال رابط الاختبار</p>' +
+      '<div class="quiz-share-apps"></div>' +
+      '<button type="button" class="quiz-share-close">إغلاق</button>';
+    var list = panel.querySelector('.quiz-share-apps');
+    apps.forEach(function (a) {
+      var link = document.createElement('a');
+      link.className = 'quiz-share-app';
+      link.href = a[2]; link.target = '_blank'; link.rel = 'noopener';
+      link.innerHTML = '<span aria-hidden="true">' + a[1] + '</span><span>' + a[0] + '</span>';
+      list.appendChild(link);
+    });
+    var copy = document.createElement('button');
+    copy.type = 'button';
+    copy.className = 'quiz-share-app';
+    copy.innerHTML = '<span aria-hidden="true">🔗</span><span>نسخ الرابط</span>';
+    copy.addEventListener('click', async function () {
+      var ok = false;
+      try { await navigator.clipboard.writeText(data.url); ok = true; } catch (e) {}
+      if (!ok) {
+        var ta = document.createElement('textarea');
+        ta.value = data.url;
+        ta.style.cssText = 'position:fixed;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { ok = document.execCommand('copy'); } catch (e) {}
+        ta.remove();
+      }
+      var label = copy.querySelector('span:last-child');
+      if (label) { label.textContent = ok ? 'تم نسخ الرابط' : 'تعذّر النسخ'; }
+    });
+    list.appendChild(copy);
+    back.appendChild(panel);
+    document.body.appendChild(back);
+    panel.querySelector('.quiz-share-close').addEventListener('click', function () { back.remove(); });
+    back.addEventListener('click', function (e) { if (e.target === back) { back.remove(); } });
+    panel.querySelector('#quiz-share-title').focus({ preventScroll: true });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      var back = document.querySelector('.quiz-share-backdrop');
+      if (back) { back.remove(); }
+    }
+  });
+
+  share.addEventListener('click', async function () {
+    var url = location.href;
+    var data = { title: document.title, text: 'جرّب هذا الاختبار: ' + document.title, url: url };
+    if (navigator.share) {
+      try { await navigator.share(data); return; }
+      catch (e) { if (e && e.name === 'AbortError') return; }
+    }
+    openShareSheet(data);
+  });
+
+  var left = 0, tick = null, mins = 0;
+  function paint() {
+    var m = Math.floor(left / 60), s = left % 60;
+    timer.textContent = '⏱ ' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    timer.classList.toggle('low', left <= 30);
+  }
+  function stop() { if (tick) { clearInterval(tick); tick = null; } }
+  function startTimer() {
+    if (!(mins > 0)) { return; }
+    stop();
+    left = Math.round(mins * 60);
+    timer.hidden = false;
+    paint();
+    tick = setInterval(function () {
+      left--;
+      if (left <= 0) {
+        stop();
+        timer.textContent = '⏱ 00:00';
+        if (typeof window.finish === 'function') {
+          window.finish();
+          var h = document.querySelector('.result h2');
+          if (h) { h.textContent = 'انتهى الوقت!'; }
+        }
+        return;
+      }
+      paint();
+    }, 1000);
+  }
+  var origFinish = window.finish;
+  if (typeof origFinish === 'function') {
+    window.finish = function () {
+      stop();
+      var out = origFinish.apply(this, arguments);
+      var again = document.querySelector('.again');
+      if (again) { again.addEventListener('click', function () { setTimeout(startTimer, 0); }, { once: true }); }
+      return out;
+    };
+  }
+  var q = new URLSearchParams(location.search);
+  var forced = Number(q.get('minutes'));
+  var file = location.pathname.split('/').pop();
+  if (forced > 0) { mins = forced; startTimer(); }
+  else {
+    fetch('../data/quizzes.json', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        var found = j && (j.quizzes || []).filter(function (x) { return x && x.file && x.file.split('/').pop() === file; })[0];
+        mins = found && Number(found.minutes) > 0 ? Number(found.minutes) : 0;
+        startTimer();
+      })
+      .catch(function () {});
+  }
+})();
+</script>
+</body>
+</html>

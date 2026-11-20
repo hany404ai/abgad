@@ -2,7 +2,7 @@
    الاستراتيجية: الشبكة أولًا (حتى تظهر تحديثات الملازم والتدريبات فورًا)،
    وإن تعذر الاتصال نعرض آخر نسخة محفوظة. */
 
-const CACHE = 'almaktaba-v6';
+const CACHE = 'almaktaba-v1';
 const SHELL = [
   './',
   'index.html',
@@ -12,6 +12,7 @@ const SHELL = [
   'icons/icon.svg',
   'icons/icon-192.png',
   'icons/icon-512.png',
+  'quizzes/q-quiz-yg4ruj.html',
 ];
 
 self.addEventListener('install', (event) => {
