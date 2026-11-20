@@ -973,9 +973,11 @@
 
   function startOnboarding() {
     const pr = state.profile || {};
+    const savedGrades = toArr(pr.grades);
     state.onb = {
       step: 1,
-      grades: toArr(pr.grades).slice(),
+      // في الزيارة الأولى نحدّد كل الصفوف، و«المصفوفة الفارغة» تعني كل المواد.
+      grades: savedGrades.length ? savedGrades.slice() : state.data.grades.map((g) => g.id),
       subjects: toArr(pr.subjects).slice(),
       name: pr.name || '',
       shown: false,
@@ -999,7 +1001,7 @@
       card = `
         <p class="step-count">الخطوة 2 من 3</p>
         <h1 id="onb-title" tabindex="-1">ما المواد التي تهمك؟</h1>
-        <p class="lead">سنعرض لك ملازم واختبارات هذه المواد فقط. يمكنك تغييرها لاحقًا من «حسابي».</p>
+        <p class="lead">كل المواد محددة تلقائيًا. يمكنك تغييرها من هنا أو لاحقًا من «حسابي».</p>
         ${subjectChips(o.subjects, availableSubjects(o.grades), 'o-subject')}
         <div class="step-actions">
           <button type="button" class="btn secondary" data-act="o-back">رجوع</button>
