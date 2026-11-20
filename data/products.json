@@ -1,0 +1,160 @@
+{
+  "library": {
+    "name": "المكتبة",
+    "tagline": "اختر ملازمك ونحن نطبعها لك",
+    "whatsapp": "201000000000",
+    "deliveryFee": 10,
+    "currency": "جنيه",
+    "instapay": {
+      "address": "almaktaba@instapay",
+      "accountName": "المكتبة"
+    }
+  },
+  "products": [],
+  "grades": [
+    {
+      "id": "p1",
+      "name": "الصف الأول الابتدائي",
+      "short": "الأول",
+      "stage": "primary"
+    },
+    {
+      "id": "p2",
+      "name": "الصف الثاني الابتدائي",
+      "short": "الثاني",
+      "stage": "primary"
+    },
+    {
+      "id": "p3",
+      "name": "الصف الثالث الابتدائي",
+      "short": "الثالث",
+      "stage": "primary"
+    },
+    {
+      "id": "p4",
+      "name": "الصف الرابع الابتدائي",
+      "short": "الرابع",
+      "stage": "primary"
+    },
+    {
+      "id": "p5",
+      "name": "الصف الخامس الابتدائي",
+      "short": "الخامس",
+      "stage": "primary"
+    },
+    {
+      "id": "p6",
+      "name": "الصف السادس الابتدائي",
+      "short": "السادس",
+      "stage": "primary"
+    },
+    {
+      "id": "m1",
+      "name": "الصف الأول الإعدادي",
+      "short": "الأول",
+      "stage": "prep"
+    },
+    {
+      "id": "m2",
+      "name": "الصف الثاني الإعدادي",
+      "short": "الثاني",
+      "stage": "prep"
+    },
+    {
+      "id": "m3",
+      "name": "الصف الثالث الإعدادي",
+      "short": "الثالث",
+      "stage": "prep"
+    },
+    {
+      "id": "s1",
+      "name": "الصف الأول الثانوي",
+      "short": "الأول",
+      "stage": "secondary"
+    },
+    {
+      "id": "s2",
+      "name": "الصف الثاني الثانوي",
+      "short": "الثاني",
+      "stage": "secondary"
+    },
+    {
+      "id": "s3",
+      "name": "الصف الثالث الثانوي",
+      "short": "الثالث",
+      "stage": "secondary"
+    }
+  ],
+  "subjects": [
+    {
+      "id": "arabic",
+      "name": "اللغة العربية"
+    },
+    {
+      "id": "english",
+      "name": "اللغة الإنجليزية"
+    },
+    {
+      "id": "french",
+      "name": "اللغة الفرنسية"
+    },
+    {
+      "id": "math",
+      "name": "الرياضيات"
+    },
+    {
+      "id": "science",
+      "name": "العلوم"
+    },
+    {
+      "id": "social",
+      "name": "الدراسات الاجتماعية"
+    },
+    {
+      "id": "religion",
+      "name": "التربية الدينية"
+    },
+    {
+      "id": "computer",
+      "name": "الحاسب الآلي"
+    },
+    {
+      "id": "physics",
+      "name": "الفيزياء"
+    },
+    {
+      "id": "chemistry",
+      "name": "الكيمياء"
+    },
+    {
+      "id": "biology",
+      "name": "الأحياء"
+    },
+    {
+      "id": "history",
+      "name": "التاريخ"
+    },
+    {
+      "id": "geography",
+      "name": "الجغرافيا"
+    },
+    {
+      "id": "philosophy",
+      "name": "الفلسفة والمنطق"
+    }
+  ],
+  "stages": [
+    {
+      "id": "primary",
+      "name": "المرحلة الابتدائية"
+    },
+    {
+      "id": "prep",
+      "name": "المرحلة الإعدادية"
+    },
+    {
+      "id": "secondary",
+      "name": "المرحلة الثانوية"
+    }
+  ]
+}
